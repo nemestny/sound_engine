@@ -9,8 +9,8 @@ pwmWriteHR() может использоваться пины: на Uno (9 и 10
 */
 #include <PWM.h>
 int led = 9; // пин, светодиод 
-unsigned long frequency = 31; // частота  1 - 2000000 (Гц)
-int brightness = 125;         // частота ШИМ (0-255)  
+int frequency = 50; // частота  1 - 2000000 (Гц)
+int brightness = 254;         // частота ШИМ (0-255)  
 //или
 //word brightnessHR = 32768;  // частота ШИМ (0-65536) is 32768.
 void setup(){
@@ -20,10 +20,17 @@ SetPinFrequency(led, frequency);          //устанавливает част�
 }
 
 void loop(){
+  frequency+=10;
+    
+  if (frequency > 1000) {
+      frequency = 50;
+    }
+
+  SetPinFrequency(led, frequency);
   pwmWrite(led, brightness);     //0-255   используйте эту функцию вместо analogWrite 
 //или
 //pwmWriteHR(led, brightnessHR); //0-65536 используйте эту функцию вместо analogWrite     
-  delay(5000);
-  pwmWrite(led,0);
-  delay(2000);
+  delay(100);
+//  pwmWrite(led,0);
+//  delay(2000);
 }
