@@ -6,6 +6,7 @@ int OK=0;
 int level = 1;
 int level_min = 1;   
 int level_max = 200;
+int level_rand = 0;
 int lost = 500;
 int lost_count = 0;
 int lost_min = 10;
@@ -73,6 +74,7 @@ ISR(TIMER0_COMPA_vect){// interrupt when timer 0 match with OCR0A value
 if(i_0>count && OK==0){// final value from vector for pin 9
 i_0=0;// go to first value of vector
 lost_count =0;
+level_rand = random(level/10);
 //OK=1;//enable pin 10
 }
 if(i_0>count && OK==1){// final value from vector for pin 10
@@ -83,7 +85,7 @@ i_0=0;//go to firs value of vector
 //  i_1 = 0;
 //}
 
-x=(sinPWM_0[i_0]*level)/level_max;// x take the value from vector corresponding to position i(i is zero indexed)
+x=(sinPWM_0[i_0]*(level+level_rand))/level_max;// x take the value from vector corresponding to position i(i is zero indexed)
 
 //i_0=i_0+1;// go to the next position
 lost_count++;
