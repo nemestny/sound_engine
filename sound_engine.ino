@@ -74,7 +74,7 @@ ISR(TIMER0_COMPA_vect){// interrupt when timer 0 match with OCR0A value
 if(i_0>count && OK==0){// final value from vector for pin 9
 i_0=0;// go to first value of vector
 lost_count =0;
-level_rand = random(level/10);
+level_rand = random(level/20);
 //OK=1;//enable pin 10
 }
 if(i_0>count && OK==1){// final value from vector for pin 10
